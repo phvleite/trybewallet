@@ -1,5 +1,9 @@
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
-import { SAVE_WALLET } from '../actions/actionTypes';
+import {
+  REQUEST_CURRENCIES,
+  REQUEST_CURRENCIES_SUCCESS,
+  REQUEST_CURRENCIES_ERROR,
+} from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -8,8 +12,13 @@ const INITIAL_STATE = {
 
 const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case SAVE_WALLET:
-    return { ...state, ...action.value };
+  case REQUEST_CURRENCIES:
+    return { ...state };
+  case REQUEST_CURRENCIES_SUCCESS:
+    return { ...state,
+      currencies: [...action.currencies] };
+  case REQUEST_CURRENCIES_ERROR:
+    return { ...state, error: action.error };
   default:
     return state;
   }
