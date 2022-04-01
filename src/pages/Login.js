@@ -1,4 +1,5 @@
 import React from 'react';
+import CryptoJS from 'crypto-js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -36,8 +37,9 @@ class Login extends React.Component {
     event.preventDefault();
     const { senha, email } = this.state;
     const { getUserLogin } = this.props;
+    const senhaEncrypted = CryptoJS.AES.encrypt(senha, 'EncryptionKey');
     this.setState({ redirect: true });
-    getUserLogin({ senha, email });
+    getUserLogin({ senha: senhaEncrypted, email });
   }
 
   render() {
