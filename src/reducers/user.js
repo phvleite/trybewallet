@@ -1,12 +1,12 @@
 // Esse reducer será responsável por tratar as informações da pessoa usuária
 import { SAVE_LOGIN_USER } from '../actions/actionTypes';
 
-const user = {
+const INITIAL_STATE = {
   email: '',
   senha: '',
 };
 
-const reducerUserLogin = (state = user, action) => {
+const user = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case SAVE_LOGIN_USER:
     return { ...state, ...action.value };
@@ -15,4 +15,4 @@ const reducerUserLogin = (state = user, action) => {
   }
 };
 
-export default reducerUserLogin;
+export default user;

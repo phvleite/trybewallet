@@ -1,26 +1,51 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { loginUserAction } from '../actions';
 
 class Login extends React.Component {
   constructor() {
     super();
     this.state = {
       email: '',
-      // senha: '',
-      // loginButton: true,
+      senha: '',
+      isDisabled: true,
+      redirect: false,
     };
   }
 
   onInputChange = ({ target }) => {
     const { name, value } = target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, () => this.validate());
+  }
+
+  validate = () => {
+    const { senha } = this.state;
+    const MIN_LEN_PASSWORD = 6;
+    const email = document.getElementById('email-input');
+    const validateEmail = email.validity.valid;
+    const validatePassword = senha.length >= MIN_LEN_PASSWORD;
+
+    const validateLogin = validateEmail && validatePassword;
+
+    this.setState({ isDisabled: !validateLogin });
+  }
+
+  onGetLoginClick = (event) => {
+    event.preventDefault();
+    const { senha, email } = this.state;
+    const { getUserLogin } = this.props;
+    this.setState({ redirect: true });
+    getUserLogin({ senha, email });
   }
 
   render() {
-    const { email } = this.state;
+    const { email, senha, isDisabled, redirect } = this.state;
     return (
       <div>
         <div>Login</div>
-        <form>
+        <form onSubmit={ this.onGetLoginClick }>
           <label htmlFor="email-input">
             e-Mail
             <input
@@ -33,10 +58,36 @@ class Login extends React.Component {
               placeholder="digite seu e-mail"
             />
           </label>
+          <label htmlFor="password-input">
+            Senha
+            <input
+              type="password"
+              data-testid="password-input"
+              name="senha"
+              value={ senha }
+              onChange={ this.onInputChange }
+              id="password-input"
+              placeholder="digite sua senha"
+            />
+          </label>
+          <input
+            type="submit"
+            disabled={ isDisabled }
+            value="Entrar"
+          />
         </form>
+        { redirect && <Redirect to="/carteira" />}
       </div>
     );
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  getUserLogin: (data) => dispatch(loginUserAction(data)),
+});
+
+Login.propTypes = {
+  getUserLogin: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(Login);
