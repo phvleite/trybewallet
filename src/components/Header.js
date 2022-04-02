@@ -11,14 +11,16 @@ class Headers extends Component {
         <div>
           TrybeWallet
         </div>
-        <div data-testid="email-field">
-          { `e-Mail: ${email}` }
-        </div>
-        <div data-testid="total-field">
-          0
-        </div>
-        <div data-testid="header-currency-field">
-          BRL
+        <div>
+          <div data-testid="email-field">
+            { `e-Mail: ${email}` }
+          </div>
+          <div data-testid="total-field">
+            0
+          </div>
+          <div data-testid="header-currency-field">
+            BRL
+          </div>
         </div>
       </div>);
   }
