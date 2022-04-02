@@ -6,12 +6,8 @@ class Wallet extends Component {
   render() {
     return (
       <>
-        <header>
-          <Header />
-        </header>
-        <main>
-          <Form />
-        </main>
+        <Header />
+        <Form />
       </>
     );
   }

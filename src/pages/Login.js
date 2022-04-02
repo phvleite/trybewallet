@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { loginUserAction } from '../actions';
+import '../css/Login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -45,40 +46,45 @@ class Login extends React.Component {
   render() {
     const { email, senha, isDisabled, redirect } = this.state;
     return (
-      <div>
-        <div>Login</div>
-        <form onSubmit={ this.onGetLoginClick }>
-          <label htmlFor="email-input">
-            e-Mail
+      <div className="page-login">
+        <div className="box-login">
+          <div className="box-title-login">Login</div>
+          <form className="box-form-login" onSubmit={ this.onGetLoginClick }>
+            <label htmlFor="email-input" className="label-input">
+              e-Mail
+              <input
+                type="email"
+                className="login-input"
+                data-testid="email-input"
+                name="email"
+                value={ email }
+                onChange={ this.onInputChange }
+                id="email-input"
+                placeholder="digite seu e-mail"
+              />
+            </label>
+            <label htmlFor="password-input" className="label-input">
+              Senha
+              <input
+                type="password"
+                className="login-input"
+                data-testid="password-input"
+                name="senha"
+                value={ senha }
+                onChange={ this.onInputChange }
+                id="password-input"
+                placeholder="digite sua senha"
+              />
+            </label>
             <input
-              type="email"
-              data-testid="email-input"
-              name="email"
-              value={ email }
-              onChange={ this.onInputChange }
-              id="email-input"
-              placeholder="digite seu e-mail"
+              type="submit"
+              className="btn-input"
+              disabled={ isDisabled }
+              value="Entrar"
             />
-          </label>
-          <label htmlFor="password-input">
-            Senha
-            <input
-              type="password"
-              data-testid="password-input"
-              name="senha"
-              value={ senha }
-              onChange={ this.onInputChange }
-              id="password-input"
-              placeholder="digite sua senha"
-            />
-          </label>
-          <input
-            type="submit"
-            disabled={ isDisabled }
-            value="Entrar"
-          />
-        </form>
-        { redirect && <Redirect to="/carteira" />}
+          </form>
+          { redirect && <Redirect to="/carteira" />}
+        </div>
       </div>
     );
   }
