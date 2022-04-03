@@ -1,0 +1,47 @@
+.box-expenses {
+  align-items: center;
+  background: rgb(211, 84, 0);
+  color: white;
+  display: flex;
+  font-size: 0.85rem;
+  height: 60px;
+  justify-content: center;
+}
+
+.value-input , .select-input {
+  background: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  outline: none;
+  padding: 5px;
+  width: 110px;
+}
+
+.btn-add-expense {
+  background-color: rgb(46, 64, 83);
+  border: none;
+  border-radius: 5px;
+  color: whitesmoke;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin: 10px;
+  padding: 6px;
+  width: 150px;
+}
+
+.btn-add-expense:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+  font-weight: 900;
+}
+
+.btn-add-expense:active {
+  filter: brightness(0.5);
+}
+
+.btn-add-expense:disabled {
+  background-color: white;
+  border: solid 1px gainsboro;
+  color: whitesmoke;
+  cursor: none;
+}

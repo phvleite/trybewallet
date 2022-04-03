@@ -7,7 +7,9 @@ class Wallet extends Component {
     return (
       <>
         <Header />
-        <ExpenseForm />
+        <main>
+          <ExpenseForm />
+        </main>
       </>
     );
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCurrencies } from '../actions';
+import '../css/ExpenseForm.css';
 
 class ExpenseForm extends Component {
   constructor() {
@@ -24,10 +25,10 @@ class ExpenseForm extends Component {
   render() {
     const { currencies } = this.props;
     const { value, description } = this.state;
-    const metodoPagamento = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito', 'Pix'];
-    const categoria = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+    const paymentMethod = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito', 'Pix'];
+    const category = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     return (
-      <main>
+      <section className="box-expenses">
         <form className="box-form-expenses" onSubmit={ currencies }>
           <label htmlFor="value-input" className="label-input">
             Valor
@@ -60,28 +61,28 @@ class ExpenseForm extends Component {
               id="method-input"
               className="select-input"
             >
-              { metodoPagamento.map((currency, ind) => (
+              { paymentMethod.map((currency, ind) => (
                 <option key={ ind } value={ currency }>{ currency }</option>
               ))}
             </select>
           </label>
           <label htmlFor="tag-input" className="label-input">
-            Método de pagamento
+            Categoria
             <select
               data-testid="tag-input"
               id="tag-input"
               className="select-input"
             >
-              { categoria.map((currency, ind) => (
+              { category.map((currency, ind) => (
                 <option key={ ind } value={ currency }>{ currency }</option>
               ))}
             </select>
           </label>
           <label htmlFor="description-input" className="label-input">
-            Valor
+            Descrição
             <input
               type="text"
-              className="description-input"
+              className="value-input"
               data-testid="description-input"
               name="descricao"
               value={ description }
@@ -91,12 +92,12 @@ class ExpenseForm extends Component {
           </label>
           <input
             type="submit"
-            // className="btn-input"
+            className="btn-add-expense"
             // disabled={ isDisabled }
             value="Adcionar despesa"
           />
         </form>
-      </main>
+      </section>
     );
   }
 }
