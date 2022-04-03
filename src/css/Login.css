@@ -25,14 +25,26 @@
 }
 
 .box-title-login {
+  align-items: center;
   background: rgb(46, 64, 83);
   color: whitesmoke;
+  display: flex;
   font-size: 2rem;
   font-weight: 900;
-  height: 50px;
+  height: 60px;
+  justify-content: center;
+  letter-spacing: -2px;
   padding: 10px 0;
   text-align: center;
   width: 350px;
+}
+
+.box-title-login span {
+  color: rgb(211, 84, 0);
+}
+
+.box-title-login p {
+  margin: 10px;
 }
 
 .login-input {

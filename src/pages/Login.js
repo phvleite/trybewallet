@@ -48,7 +48,13 @@ class Login extends React.Component {
     return (
       <div className="page-login">
         <div className="box-login">
-          <div className="box-title-login">Login</div>
+          <div className="box-title-login">
+            <p>
+              Trybe
+              <span id="wallet">Wallet</span>
+            </p>
+            <p>Login</p>
+          </div>
           <form className="box-form-login" onSubmit={ this.onGetLoginClick }>
             <label htmlFor="email-input" className="label-input">
               e-Mail

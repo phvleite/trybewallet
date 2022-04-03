@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCurrencies } from '../actions';
 
-class Form extends Component {
+class ExpenseForm extends Component {
   constructor() {
     super();
     this.state = {
       value: 0,
-      currency: '',
-      method: '',
-      tag: '',
-      description: '',
-      exchangeRates: {},
+    //   currency: '',
+    //   method: '',
+    //   tag: '',
+    //   description: '',
+    //   exchangeRates: {},
     };
   }
 
@@ -109,9 +109,9 @@ const mapDispatchToProps = (dispatch) => ({
   getCurrencies: () => dispatch(fetchCurrencies()),
 });
 
-Form.propTypes = {
+ExpenseForm.propTypes = {
   getCurrencies: PropTypes.func.isRequired,
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseForm);
