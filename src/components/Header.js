@@ -5,8 +5,15 @@ import '../css/Header.css';
 
 class Headers extends Component {
   render() {
-    const { restoreData } = this.props;
+    const { restoreData, expenses } = this.props;
     const { email } = restoreData.user;
+    let totalExpenses = 0;
+    if (expenses.length > 0) {
+      expenses.forEach((element) => {
+        const { ask } = element.exchangeRates[element.currency];
+        totalExpenses += parseFloat(element.value) * ask;
+      });
+    }
     return (
       <header className="box-header">
         <div className="box-title-header">
@@ -20,7 +27,7 @@ class Headers extends Component {
             { `e-Mail: ${email}` }
           </div>
           <div data-testid="total-field" className="box-total">
-            0
+            { totalExpenses.toFixed(2) }
           </div>
           <div data-testid="header-currency-field" className="box-currency">
             BRL
@@ -32,10 +39,13 @@ class Headers extends Component {
 
 const mapStateToProps = (store) => ({
   restoreData: store,
+  totalExpenses: store.wallet.totalExpenses,
+  expenses: store.wallet.expenses,
 });
 
 Headers.propTypes = {
   restoreData: PropTypes.objectOf(PropTypes.object).isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps)(Headers);

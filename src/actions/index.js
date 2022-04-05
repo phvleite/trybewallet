@@ -1,34 +1,40 @@
 // Coloque aqui suas actions
 import {
   SAVE_LOGIN_USER,
-  SAVE_WALLET,
+  SAVE_EXPENSES,
+  SAVE_TOTAL_EXPENSES,
   REQUEST_CURRENCIES,
-  REQUEST_CURRENCIES_SUCCESS,
-  REQUEST_CURRENCIES_ERROR,
+  RECEIVE_CURRENCIES_SUCCESS,
+  RECEIVE_CURRENCIES_ERROR,
 } from './actionTypes';
 import getCurrencies from '../services/currenciesApi';
 
-const loginUserAction = (value) => ({
+export const loginUserAction = (value) => ({
   type: SAVE_LOGIN_USER,
   value,
 });
 
-const walletAction = (value) => ({
-  type: SAVE_WALLET,
-  value,
+export const saveExpenses = (expenses) => ({
+  type: SAVE_EXPENSES,
+  expenses,
 });
 
-const requestCurrencies = () => ({
+export const saveTotalExpenses = (totalExpenses) => ({
+  type: SAVE_TOTAL_EXPENSES,
+  totalExpenses,
+});
+
+export const requestCurrencies = () => ({
   type: REQUEST_CURRENCIES,
 });
 
-const receiveCurrenciesSuccess = (currencies) => ({
-  type: REQUEST_CURRENCIES_SUCCESS,
+export const receiveCurrenciesSuccess = (currencies) => ({
+  type: RECEIVE_CURRENCIES_SUCCESS,
   currencies,
 });
 
-const receiveCurrenciesError = (error) => ({
-  type: REQUEST_CURRENCIES_ERROR,
+export const receiveCurrenciesError = (error) => ({
+  type: RECEIVE_CURRENCIES_ERROR,
   error,
 });
 
@@ -46,11 +52,3 @@ export function fetchCurrencies() {
     }
   };
 }
-
-export {
-  loginUserAction,
-  walletAction,
-  receiveCurrenciesError,
-  receiveCurrenciesSuccess,
-  requestCurrencies,
-};

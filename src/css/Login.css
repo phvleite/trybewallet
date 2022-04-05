@@ -85,6 +85,8 @@
 .btn-input:disabled {
   background-color: white;
   border: solid 1px gainsboro;
+  box-shadow: none;
   color: whitesmoke;
   cursor: none;
+  font-weight: 100;
 }
