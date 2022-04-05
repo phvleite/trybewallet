@@ -7,9 +7,20 @@
 }
 
 .table-expenses th {
-  border: solid 1px white;
-  border-radius: 5px;
   font-size: 0.75rem;
   height: 30px;
-  width: 140px;
+  width: 130px;
+}
+
+.table-body {
+  background: rgba(211, 84, 0, 0.5);
+  color: whitesmoke;
+}
+
+.table-body td {
+  border-radius: 5px;
+  font-size: 0.65rem;
+  height: 20px;
+  text-align: center;
+  width: 130px;
 }
