@@ -1,0 +1,15 @@
+.table-expenses {
+  background: rgb(46, 64, 83);
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.table-expenses th {
+  border: solid 1px white;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  height: 30px;
+  width: 140px;
+}
