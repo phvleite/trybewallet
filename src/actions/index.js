@@ -2,7 +2,6 @@
 import {
   SAVE_LOGIN_USER,
   SAVE_EXPENSES,
-  SAVE_TOTAL_EXPENSES,
   REQUEST_CURRENCIES,
   RECEIVE_CURRENCIES_SUCCESS,
   RECEIVE_CURRENCIES_ERROR,
@@ -17,11 +16,6 @@ export const loginUserAction = (value) => ({
 export const saveExpenses = (expenses) => ({
   type: SAVE_EXPENSES,
   expenses,
-});
-
-export const saveTotalExpenses = (totalExpenses) => ({
-  type: SAVE_TOTAL_EXPENSES,
-  totalExpenses,
 });
 
 export const requestCurrencies = () => ({

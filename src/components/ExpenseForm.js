@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCurrencies, saveExpenses, saveTotalExpenses } from '../actions';
+import { fetchCurrencies, saveExpenses } from '../actions';
 import getCurrencies from '../services/currenciesApi';
 import '../css/ExpenseForm.css';
 
@@ -43,25 +43,15 @@ class ExpenseForm extends Component {
 
   getExpense = async (e) => {
     e.preventDefault();
-    const { dispatchExpense, dispatchTotalExpenses, expenses } = this.props;
+    const { dispatchExpense, expenses } = this.props;
     const { value, description, currency, tag, method } = this.state;
     const exchangeRates = await getCurrencies();
-    let totalExpenses = 0;
-    let valueExpenses;
-    const valueConverted = exchangeRates[currency].ask * value;
     let id;
     if (expenses.length === 0) {
       id = 0;
     } else {
       id = expenses[expenses.length - 1].id + 1;
     }
-    if (expenses) {
-      valueExpenses = expenses.map((exp) => exp.valueConverted);
-      valueExpenses.forEach((element) => {
-        totalExpenses += element;
-      });
-    }
-    totalExpenses += valueConverted;
     const expense = {
       id,
       value,
@@ -72,7 +62,6 @@ class ExpenseForm extends Component {
       exchangeRates,
     };
     dispatchExpense(expense);
-    dispatchTotalExpenses(totalExpenses);
     this.setState({
       value: 0,
       currency: 'USD',
@@ -180,12 +169,10 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
   getCurrenciesOptions: () => dispatch(fetchCurrencies()),
   dispatchExpense: (state) => dispatch(saveExpenses(state)),
-  dispatchTotalExpenses: (state) => dispatch(saveTotalExpenses(state)),
 });
 
 ExpenseForm.propTypes = {
   dispatchExpense: PropTypes.func.isRequired,
-  dispatchTotalExpenses: PropTypes.func.isRequired,
   getCurrenciesOptions: PropTypes.func.isRequired,
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
