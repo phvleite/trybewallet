@@ -20,7 +20,19 @@
 .table-body td {
   border-radius: 5px;
   font-size: 0.65rem;
-  height: 20px;
+  height: 30px;
   text-align: center;
   width: 130px;
+}
+
+.btn-expense {
+  background-color: rgb(46, 64, 83);
+  border: none;
+  border-radius: 5px;
+  color: whitesmoke;
+  cursor: pointer;
+  font-size: 0.65rem;
+  margin: 2px;
+  padding: 5px;
+  width: 50px;
 }

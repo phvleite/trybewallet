@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { deleteExpenses } from '../actions';
 import '../css/TableExpenses.css';
 
 class TableExpenses extends Component {
+  deleteExpense = ({ target }) => {
+    const { dispatchExpense, expenses } = this.props;
+    const { id } = target;
+    const base = 10;
+    const filterExpenses = expenses
+      .filter((expense) => expense.id !== parseInt(id, base));
+    dispatchExpense(filterExpenses);
+  }
+
   renderTableHeader() {
     return (
       <tr className="table-header">
@@ -47,6 +57,22 @@ class TableExpenses extends Component {
                   { parseFloat(expense.value * dbExchangeRates[ind].ask).toFixed(2) }
                 </td>
                 <td>Real</td>
+                <td>
+                  <input
+                    className="btn-expense"
+                    data-testid="edit-btn"
+                    type="button"
+                    value="Editar"
+                  />
+                  <input
+                    id={ expense.id }
+                    data-testid="delete-btn"
+                    type="button"
+                    className="btn-expense"
+                    value="Excluir"
+                    onClick={ this.deleteExpense }
+                  />
+                </td>
               </tr>
             ))}
           </tbody>
@@ -59,8 +85,13 @@ const mapStateToProps = (store) => ({
   expenses: store.wallet.expenses,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  dispatchExpense: (state) => dispatch(deleteExpenses(state)),
+});
+
 TableExpenses.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dispatchExpense: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(TableExpenses);
+export default connect(mapStateToProps, mapDispatchToProps)(TableExpenses);

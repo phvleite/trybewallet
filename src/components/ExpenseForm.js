@@ -46,8 +46,6 @@ class ExpenseForm extends Component {
     const { dispatchExpense, expenses } = this.props;
     const { value, description, currency, tag, method } = this.state;
     const exchangeRates = await getCurrencies();
-    // const splitExchangeRates = exchangeRates[currency].name.split('/');
-    // console.log(splitExchangeRates);
     let id;
     if (expenses.length === 0) {
       id = 0;

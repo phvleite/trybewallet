@@ -4,6 +4,7 @@ import {
   RECEIVE_CURRENCIES_SUCCESS,
   RECEIVE_CURRENCIES_ERROR,
   SAVE_EXPENSES,
+  DELETE_EXPENSES,
 } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
@@ -25,6 +26,10 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: [...state.expenses, action.expenses] };
+  case DELETE_EXPENSES:
+    return {
+      ...state,
+      expenses: [...action.expenses] };
   default:
     return state;
   }
